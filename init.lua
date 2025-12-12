@@ -56,6 +56,7 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "options"
 require "autocmds"
+require "cpp-configuration"
 
 vim.schedule(function()
   require "mappings"

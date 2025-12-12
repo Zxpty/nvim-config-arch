@@ -16,45 +16,40 @@ local function custom_on_attach(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 end
 
--- Load lspconfig plugin
-local lspconfig = require "lspconfig"
-
 -- HTML LSP
-lspconfig.html.setup {
+vim.lsp.config("html", {
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- CSS LSP
-lspconfig.cssls.setup {
+vim.lsp.config("cssls", {
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- TailwindCSS LSP
-lspconfig.tailwindcss.setup {
+vim.lsp.config("tailwindcss", {
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- Bash LSP
-lspconfig.bashls.setup {
+vim.lsp.config("bashls", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "sh", "bash" },
-}
+})
 
 -- Markdown LSP (Marksman)
-lspconfig.marksman.setup {
+vim.lsp.config("marksman", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "markdown", "markdown.mdx" },
-}
-
-
+})
 
 -- TypeScript/JavaScript
-lspconfig.ts_ls.setup {
+vim.lsp.config("ts_ls", {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false -- disable formatting to avoid conflict with prettier
     vim.diagnostic.config({ virtual_text = true }, bufnr)
@@ -89,16 +84,16 @@ lspconfig.ts_ls.setup {
       },
     },
   },
-}
+})
 
 -- JSON LSP
-lspconfig.jsonls.setup {
+vim.lsp.config("jsonls", {
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- Emmet LSP
-lspconfig.emmet_ls.setup {
+vim.lsp.config("emmet_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {
@@ -116,10 +111,10 @@ lspconfig.emmet_ls.setup {
       },
     },
   },
-}
+})
 
 -- Lua LSP
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -139,7 +134,26 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
+
+-- C++ LSP (clangd) for competitive programming
+vim.lsp.config("clangd", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
+  },
+  init_options = {
+    fallbackFlags = { "-std=c++17" },
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+})
 
 -- Use Telescope UI dropdown for vim.ui.select prompts
 vim.ui.select = require("telescope.themes").get_dropdown {}
