@@ -10,7 +10,8 @@ lua/
 │   ├── options.lua    # Opciones de Vim (números relativos, tabs, etc.)
 │   ├── mappings.lua   # Atajos de teclado personalizados
 │   ├── autocmds.lua   # Autocomandos de Neovim
-│   └── cpp.lua        # Configuración específica para C++ (compilación, ejecución)
+│   ├── cpp.lua        # Configuración específica para C++ (F8, F9, F10)
+│   └── python.lua     # Configuración específica para Python (F8, F9)
 │
 ├── ui/                # Configuraciones de interfaz y apariencia
 │   ├── theme.lua      # 🎨 CAMBIA EL TEMA AQUÍ
@@ -22,10 +23,12 @@ lua/
 │   └── init.lua       # Lista de todos los plugins instalados
 │
 ├── configs/           # Configuraciones de plugins específicos
-│   ├── conform.lua    # Formateo de código
-│   ├── lspconfig.lua  # Configuración de LSP (servidores de lenguaje)
-│   ├── luasnip.lua    # Configuración de snippets
+│   ├── conform.lua    # Formateo de código (solo Lua)
+│   ├── lspconfig.lua  # Configuración de LSP (solo Lua, C++ y Python usan CoC)
+│   ├── coc.lua        # 🔤 CoC.nvim - Autocompletado para C++ y Python
 │   └── lazy.lua       # Configuración del gestor de plugins
+│
+├── coc-settings.json  # ⚙️ Configuración de CoC (clangd para C++, pylsp para Python)
 │
 └── snippets/          # Snippets personalizados
     └── cpp.lua        # Snippets para C++
@@ -75,7 +78,32 @@ init.lua               # Archivo de entrada principal
 
 ### Agregar Snippets
 - Archivo: `lua/snippets/cpp.lua` (para C++)
-- O crea nuevos archivos en `lua/snippets/` para otros lenguajes
+- Crea `lua/snippets/python.lua` si necesitas snippets para Python
+
+### Configuración de C++ y Python
+- **C++**: Configurado en `lua/core/cpp.lua` (F8: test, F9: compilar, F10: ejecutar)
+- **Python**: Configurado en `lua/core/python.lua` (F8: test, F9: ejecutar)
+- **Autocompletado**: Ambos usan CoC.nvim (configurado en `coc-settings.json`)
+
+### Configurar Autocompletado (CoC.nvim)
+- Archivo: `coc-settings.json` - Configuración principal de CoC
+- Archivo: `lua/configs/coc.lua` - Keymaps y configuración de CoC
+- El autocompletado funciona automáticamente cuando escribes (como en tu setup anterior)
+- CoC maneja:
+  - **LSP**: Completado inteligente del servidor de lenguaje (clangd para C++)
+  - **Snippets**: Snippets con UltiSnips
+  - **Diagnósticos**: Errores y advertencias en tiempo real
+
+## ⌨️ Atajos de Autocompletado (CoC)
+
+- **Tab**: Seleccionar siguiente sugerencia o expandir snippet
+- **Shift+Tab**: Seleccionar sugerencia anterior
+- **Enter**: Confirmar y aceptar sugerencia
+- **K**: Mostrar documentación del símbolo bajo el cursor
+- **gd**: Ir a definición
+- **gr**: Ver referencias
+- **<leader>rn**: Renombrar símbolo
+- **<leader>a**: Acciones de código
 
 ## 📝 Notas
 

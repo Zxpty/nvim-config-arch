@@ -5,7 +5,7 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "cpp",
   callback = function()
-    vim.keymap.set("n", "<F5>", ":vsp <CR> :term check.sh %:r %:h/in %:h/out <CR>", { noremap = true, silent = true, buffer = true })
+    vim.keymap.set("n", "<F8>", ":vsp <CR> :term check.sh %:r %:h/in %:h/out <CR>", { noremap = true, silent = true, buffer = true })
   end,
 })
 
@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "cpp",
   callback = function()
-    vim.keymap.set("n", "<F6>", ":w <bar> !g++ -DLOCAL -std=c++17 % -o %:r<CR>", { noremap = true, silent = true, buffer = true })
+    vim.keymap.set("n", "<F9>", ":w <bar> !g++ -DLOCAL -std=c++17 % -o %:r<CR>", { noremap = true, silent = true, buffer = true })
   end,
 })
 

@@ -58,6 +58,7 @@ dofile(vim.g.base46_cache .. "statusline")
 require "core.options"
 require "core.autocmds"
 require "core.cpp" -- C++ competitive programming configuration
+require "core.python" -- Python competitive programming configuration
 
 vim.schedule(function()
   require "core.mappings"

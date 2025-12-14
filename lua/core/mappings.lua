@@ -87,3 +87,41 @@ map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
 map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
 map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>")
+
+-- Diagnostic command for autocompletion
+map("n", "<leader>cd", function()
+  print("=== Diagnóstico de Autocompletado ===\n")
+  
+  -- Check nvim-cmp
+  local cmp_ok, cmp = pcall(require, "cmp")
+  print("nvim-cmp cargado: " .. (cmp_ok and "✓" or "✗"))
+  
+  -- Check clangd executable
+  local clangd_ok = vim.fn.executable("clangd") == 1
+  print("clangd instalado: " .. (clangd_ok and "✓" or "✗"))
+  if not clangd_ok then
+    print("⚠️  Instala clangd con: :Mason")
+  end
+  
+  -- Check LSP clients
+  local clients = vim.lsp.get_active_clients()
+  local clangd_active = false
+  for _, client in ipairs(clients) do
+    if client.name == "clangd" then
+      clangd_active = true
+      print("clangd activo: ✓")
+      print("  - Capabilities: " .. vim.inspect(client.server_capabilities.completionProvider ~= nil))
+      break
+    end
+  end
+  if not clangd_active then
+    print("clangd activo: ✗ (Ejecuta :LspInfo para más detalles)")
+  end
+  
+  -- Check current buffer
+  local bufnr = vim.api.nvim_get_current_buf()
+  local filetype = vim.bo[bufnr].filetype
+  print("Filetype actual: " .. filetype)
+  
+  print("\nEjecuta :LspInfo para ver detalles del LSP")
+end, { desc = "Diagnosticar autocompletado" })

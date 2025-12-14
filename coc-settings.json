@@ -1,0 +1,62 @@
+{
+  "clangd.fallbackFlags": [
+    "-std=c++17"
+  ],
+  "snippets.ultisnips.pythonPrompt": false,
+  "snippets.enable": true,
+  "snippets.ultisnips.enable": true,
+  "coc.preferences.formatOnSave": false,
+  "coc.preferences.enablePreview": true,
+  "coc.preferences.previewAutoClose": false,
+  "diagnostic.enable": true,
+  "diagnostic.errorSign": "✗",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": [
+        ".git",
+        "compile_flags.txt",
+        "compile_commands.json"
+      ],
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "initializationOptions": {
+        "fallbackFlags": [
+          "-std=c++17"
+        ]
+      }
+    },
+    "pylsp": {
+      "command": "pylsp",
+      "rootPatterns": [
+        ".git",
+        "setup.py",
+        "setup.cfg",
+        "pyproject.toml",
+        "requirements.txt"
+      ],
+      "filetypes": [
+        "python"
+      ],
+      "settings": {
+        "pylsp": {
+          "plugins": {
+            "pycodestyle": {
+              "enabled": false
+            },
+            "pylint": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
