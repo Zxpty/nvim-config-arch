@@ -41,8 +41,6 @@ return {
     end,
   },
 
-  -- Blink (NvChad feature)
-  { import = "nvchad.blink.lazyspec" },
 
   -- Treesitter: Solo parsers necesarios para competitive programming
   {

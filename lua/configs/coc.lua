@@ -18,8 +18,6 @@ map("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space(
 -- Use Shift+Tab to go back
 map("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], { expr = true, silent = true, desc = "Previous completion" })
 
--- Make <CR> to accept selected completion item or notify coc.nvim to format
-map("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], { expr = true, silent = true, desc = "Accept completion" })
 
 -- Use `[g` and `]g` to navigate diagnostics
 map("n", "[g", "<Plug>(coc-diagnostic-prev)", { desc = "Previous diagnostic" })
@@ -96,10 +94,7 @@ vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { n
 -- Add `:OR` command for organizing imports of the current buffer
 vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 
--- Add (Neo)Vim's native statusline support
--- Note: This is optional - NvChad already has a statusline configured
--- If you want to add CoC status to statusline, you can do it manually in your statusline config
--- vim.cmd([[set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}]])
+
 
 -- Mappings for CoCList
 map("n", "<space>s", ":<C-u>CocList -I symbols<cr>", { desc = "Search symbols" })
