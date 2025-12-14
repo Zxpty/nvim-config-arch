@@ -5,39 +5,26 @@
 ---@type ChadrcConfig
 local M = {}
 
+-- Import UI configurations from organized structure
+local theme_config = require "ui.theme"
+local statusline_config = require "ui.statusline"
+local dashboard_config = require "ui.dashboard"
+local telescope_config = require "ui.telescope"
+
+-- Theme configuration (change theme in lua/ui/theme.lua)
 M.base46 = {
-	theme = "nord",
-  transparency = true,
-	hl_override = {
-		Comment = { italic = true },
-		["@comment"] = { italic = true },
-	},
+  theme = theme_config.theme,
+  transparency = theme_config.transparency,
+  hl_override = theme_config.hl_override,
 }
 
-M.nvdash = {
-  header = {
-    " __  __       __     __  __     __       ",
-    "/\\ \\_\\ \\     /\\ \\   /\\ \\/ /    /\\ \\      ",
-    '\\ \\  __ \\   _\\_\\ \\  \\ \\  _"-.  \\ \\ \\____ ',
-    " \\ \\_\\ \\_\\ /\\_____\\  \\ \\_\\ \\_\\  \\ \\_____\\",
-    "  \\/_/\\/_/ \\/_____/   \\/_/\\/_/   \\/_____/",
-    "                                               ",
-    "                                               ",
-  },
-  load_on_startup = true 
-} 
+-- Dashboard configuration (change dashboard in lua/ui/dashboard.lua)
+M.nvdash = dashboard_config
 
-
+-- UI configuration (change UI settings in lua/ui/ files)
 M.ui = {
-   telescope = { style = "borderless" }, -- borderless / bordered
-   statusline = {
-    theme = "minimal",
-    separator_style = "round",
-    overriden_modules = nil,
-  },
-     --  tabufline = {
-     --     lazyload = false
-     -- }
+  telescope = { style = telescope_config.style },
+  statusline = statusline_config,
 }
 
 return M

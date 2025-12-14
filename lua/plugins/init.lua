@@ -139,9 +139,21 @@ return {
         "javascript",
         "typescript",
         "tsx",
+        "cpp", -- Para snippets de C++
       },
     },
     auto_install = true, -- Automatically install missing parsers
+  },
+
+  -- LuaSnip configuration for snippets
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      require "configs.luasnip"
+    end,
   },
 }
 

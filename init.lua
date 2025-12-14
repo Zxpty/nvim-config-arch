@@ -54,10 +54,11 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-require "options"
-require "autocmds"
-require "cpp-configuration"
+-- Load core configurations
+require "core.options"
+require "core.autocmds"
+require "core.cpp" -- C++ competitive programming configuration
 
 vim.schedule(function()
-  require "mappings"
+  require "core.mappings"
 end)
