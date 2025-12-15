@@ -4,6 +4,15 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+vim.schedule(function()
+  pcall(function()
+    vim.keymap.del("n", "<Tab>")
+  end)
+  pcall(function()
+    vim.keymap.del("n", "<S-Tab>")
+  end)
+end)
+
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
@@ -88,34 +97,19 @@ map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
 map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>")
 
--- Diagnostic command for autocompletion
+-- Diagnostic command for autocompletion (CoC)
 map("n", "<leader>cd", function()
-  print("=== Diagnóstico de Autocompletado ===\n")
+  print("=== Diagnóstico de Autocompletado (CoC) ===\n")
   
-  -- Check nvim-cmp
-  local cmp_ok, cmp = pcall(require, "cmp")
-  print("nvim-cmp cargado: " .. (cmp_ok and "✓" or "✗"))
+  -- Check CoC
+  local coc_ok = vim.fn.exists("*coc#rpc#ready") == 1
+  print("CoC cargado: " .. (coc_ok and "✓" or "✗"))
   
   -- Check clangd executable
   local clangd_ok = vim.fn.executable("clangd") == 1
   print("clangd instalado: " .. (clangd_ok and "✓" or "✗"))
   if not clangd_ok then
-    print("⚠️  Instala clangd con: :Mason")
-  end
-  
-  -- Check LSP clients
-  local clients = vim.lsp.get_active_clients()
-  local clangd_active = false
-  for _, client in ipairs(clients) do
-    if client.name == "clangd" then
-      clangd_active = true
-      print("clangd activo: ✓")
-      print("  - Capabilities: " .. vim.inspect(client.server_capabilities.completionProvider ~= nil))
-      break
-    end
-  end
-  if not clangd_active then
-    print("clangd activo: ✗ (Ejecuta :LspInfo para más detalles)")
+    print("⚠️  Instala clangd: sudo pacman -S clangd")
   end
   
   -- Check current buffer
@@ -123,5 +117,5 @@ map("n", "<leader>cd", function()
   local filetype = vim.bo[bufnr].filetype
   print("Filetype actual: " .. filetype)
   
-  print("\nEjecuta :LspInfo para ver detalles del LSP")
+  print("\nEjecuta :CocInfo para ver detalles de CoC")
 end, { desc = "Diagnosticar autocompletado" })

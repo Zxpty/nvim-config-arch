@@ -1,4 +1,10 @@
 return {
+  -- Disable nvim-cmp completely (using CoC instead for all languages)
+  {
+    "hrsh7th/nvim-cmp",
+    enabled = false,
+  },
+  
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save

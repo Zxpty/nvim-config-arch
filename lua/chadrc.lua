@@ -25,6 +25,7 @@ M.nvdash = dashboard_config
 M.ui = {
   telescope = { style = telescope_config.style },
   statusline = statusline_config,
+  tabufline = { enabled = false }, -- Disable tabufline to fix buffer navigation errors
 }
 
 return M
