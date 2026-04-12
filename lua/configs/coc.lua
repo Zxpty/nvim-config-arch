@@ -18,6 +18,8 @@ map("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space(
 -- Use Shift+Tab to go back
 map("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], { expr = true, silent = true, desc = "Previous completion" })
 
+-- Use Enter to confirm completion
+map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], { expr = true, silent = true, desc = "Confirm completion" })
 
 -- Use `[g` and `]g` to navigate diagnostics
 map("n", "[g", "<Plug>(coc-diagnostic-prev)", { desc = "Previous diagnostic" })

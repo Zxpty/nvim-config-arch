@@ -11,7 +11,11 @@ return {
     opts = require "configs.conform",
   },
 
-  -- LSP config (solo para Lua, C++ y Python los maneja CoC)
+  {
+    "jiangmiao/auto-pairs",
+    lazy = false,
+  },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -19,7 +23,6 @@ return {
     end,
   },
 
-  -- Lazygit integration in Neovim
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
@@ -29,7 +32,6 @@ return {
     config = function() end,
   },
 
-  -- Neovim Tmux Navigation
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -48,7 +50,6 @@ return {
   },
 
 
-  -- Treesitter: Solo parsers necesarios para competitive programming
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
