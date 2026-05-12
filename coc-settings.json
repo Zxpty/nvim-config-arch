@@ -1,5 +1,5 @@
 {
-  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
+  "clangd.path": "clangd",
   "snippets.ultisnips.pythonPrompt": false,
   "snippets.enable": true,
   "snippets.ultisnips.enable": true,
