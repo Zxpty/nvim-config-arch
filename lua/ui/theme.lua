@@ -3,8 +3,8 @@
 -- Popular themes: nord, catppuccin, tokyonight, dracula, gruvbox, onedark, etc.
 
 return {
-  theme = "nord", -- Change this to your preferred theme
-  transparency = true, -- Enable transparent background
+  theme = "gruvbox_light", -- Change this to your preferred theme
+  transparency = false, -- En modo claro, mejor desactivar la transparencia
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },

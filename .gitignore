@@ -1,0 +1,21 @@
+.DS_Store
+
+# Neovim and editor artifacts
+*.swp
+*.swo
+*.swn
+*.tmp
+*.bak
+*.orig
+*~
+.netrwhist
+Session.vim
+
+# Local state that should not be versioned
+.cache/
+.local/
+.history/
+undo/
+swap/
+backup/
+session/

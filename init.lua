@@ -1,26 +1,16 @@
--- VS Code Config
 if vim.g.vscode then
-  -- Minimal config for VSCode-Neovim
-
-  -- Use system clipboard (so yank/copy in VSCode copies to system)
   vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
-
-  -- Optional key mappings for consistency
   vim.keymap.set("n", "Y", '"+y', { noremap = true, silent = true })
   vim.keymap.set("v", "Y", '"+y', { noremap = true, silent = true })
   vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
   vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { noremap = true, silent = true })
-
   return
 end
 
--- Neovim
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
--- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-
 if not vim.uv.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
@@ -30,7 +20,6 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
--- force for global virtual_text
 vim.diagnostic.config {
   virtual_text = true,
   signs = true,
@@ -38,7 +27,6 @@ vim.diagnostic.config {
   update_in_insert = false,
 }
 
--- load plugins
 require("lazy").setup({
   {
     "NvChad/NvChad",
@@ -46,19 +34,15 @@ require("lazy").setup({
     branch = "v2.5",
     import = "nvchad.plugins",
   },
-
   { import = "plugins" },
 }, lazy_config)
 
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
+pcall(dofile, vim.g.base46_cache .. "defaults")
+pcall(dofile, vim.g.base46_cache .. "statusline")
 
--- Load core configurations
 require "core.options"
 require "core.autocmds"
-require "core.cpp" -- C++ competitive programming configuration
-require "core.python" -- Python competitive programming configuration
+require "core.runners"
 
 vim.schedule(function()
   require "core.mappings"

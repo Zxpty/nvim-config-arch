@@ -1,7 +1,5 @@
 {
-  "clangd.fallbackFlags": [
-    "-std=c++17"
-  ],
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
   "snippets.ultisnips.pythonPrompt": false,
   "snippets.enable": true,
   "snippets.ultisnips.enable": true,
@@ -14,26 +12,5 @@
   "diagnostic.errorSign": "✗",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ℹ",
-  "diagnostic.hintSign": "➤",
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": [
-        ".git",
-        "compile_flags.txt",
-        "compile_commands.json"
-      ],
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
-      "initializationOptions": {
-        "fallbackFlags": [
-          "-std=c++17"
-        ]
-      }
-    }
-  }
+  "diagnostic.hintSign": "➤"
 }
